@@ -1,10 +1,23 @@
-import { ClerkProvider } from '@clerk/nextjs';
-import "./globals.css";
 import type { Metadata } from "next";
+import { Geist, Geist_Mono, IBM_Plex_Serif, Mona_Sans } from "next/font/google";
+import "./globals.css";
+
+const ibmPlexSerif = IBM_Plex_Serif({
+  variable: "--font-ibm-plex-serif",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const monaSans = Mona_Sans({
+  variable: "--font-mona-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Next.js Premium Startup Boilerplate",
-  description: "Created using the ultimate interactive Next.js stack generator CLI.",
+  title: "Bookified",
+  description: "Transform your books into interactive ai",
 };
 
 export default function RootLayout({
@@ -13,12 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body style={{ margin: 0, padding: 0 }}>
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    <html
+      lang="en"
+      className={`${ibmPlexSerif.variable} ${monaSans.variable} relative font-sans antialiased`}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
+    </html>
   );
 }
