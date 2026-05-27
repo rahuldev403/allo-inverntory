@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 const Hero = () => {
   return (
     <section className="wrapper mt-[94px]">
-      <div className="bg-[#EEDDCC] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="bg-[#EEDDCC] rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-10">
         {/* Left Side */}
         <div className="flex-1 space-y-6 max-w-sm">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary">
@@ -24,55 +24,66 @@ const Hero = () => {
         </div>
 
         {/* Center Side */}
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex w-full lg:flex-auto justify-center items-center">
           <Image
             src="/assets/hero-illustration.png"
             alt="Vintage Books and Globe"
-            width={400}
-            height={400}
-            className="object-contain"
+            width={500}
+            height={500}
+            className="object-contain w-full max-w-[350px] lg:max-w-[450px]"
             priority
           />
         </div>
 
         {/* Right Side */}
-        <div className="flex-1 max-w-sm w-full">
-          <div className="bg-white rounded-2xl p-6 md:p-8 space-y-6 shadow-sm">
-            <div className="flex gap-4">
-              <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center shrink-0">
-                <span className="text-sm font-medium">1</span>
+        <div className="flex-1 w-full max-w-[320px]">
+          <div className="bg-white rounded-xl p-8 space-y-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+            <div className="flex items-start gap-4">
+              <div className="w-8 h-8 rounded-full border border-primary flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-semibold text-primary">1</span>
               </div>
               <div>
-                <h3 className="font-semibold text-primary">Upload PDF</h3>
-                <p className="text-muted-foreground text-sm">
+                <h3 className="font-bold text-primary mb-1 text-[17px]">
+                  Upload PDF
+                </h3>
+                <p className="text-muted-foreground text-[15px]">
                   Add your book file
                 </p>
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center shrink-0">
-                <span className="text-sm font-medium">2</span>
+            <div className="flex items-start gap-4">
+              <div className="w-8 h-8 rounded-full border border-primary flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-semibold text-primary">2</span>
               </div>
               <div>
-                <h3 className="font-semibold text-primary">AI Processing</h3>
-                <p className="text-muted-foreground text-sm">
+                <h3 className="font-bold text-primary mb-1 text-[17px]">
+                  AI Processing
+                </h3>
+                <p className="text-muted-foreground text-[15px]">
                   We analyze the content
                 </p>
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center shrink-0">
-                <span className="text-sm font-medium">3</span>
+            <div className="flex items-start gap-4">
+              <div className="w-8 h-8 rounded-full border border-primary flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-semibold text-primary">3</span>
               </div>
               <div>
-                <h3 className="font-semibold text-primary">Voice Chat</h3>
-                <p className="text-muted-foreground text-sm">Discuss with AI</p>
+                <h3 className="font-bold text-primary mb-1 text-[17px]">
+                  Voice Chat
+                </h3>
+                <p className="text-muted-foreground text-[15px]">
+                  Discuss with AI
+                </p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="library-hero-grid">
+        
       </div>
     </section>
   );
