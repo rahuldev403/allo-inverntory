@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { sampleBooks } from "@/lib/actions/constants";
+import BookCard from "./BookCard";
 
 const Hero = () => {
   return (
@@ -82,8 +84,16 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="library-hero-grid">
-        
+      <div className="library-books-grid">
+        {sampleBooks.map((book) => (
+          <BookCard
+            key={book._id}
+            title={book.title}
+            author={book.author}
+            coverURL={book.coverURL}
+            slug={book.slug}
+          />
+        ))}
       </div>
     </section>
   );
