@@ -1,105 +1,169 @@
-"use client";
+import React from 'react';
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-export default function ProductList() {
-  const [products, setProducts] = useState<any[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-
-  // In a real app, use SWR or React Query. Using fetch for simplicity here.
-  useEffect(() => {
-    fetch("/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
-
-  const handleReserve = async (stockId: string) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch("/api/reservations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stockId, quantity: 1 }),
-      });
-
-      if (res.status === 409) {
-        setError(
-          "Not enough stock available. Another customer just reserved the last unit.",
-        );
-        setLoading(false);
-        return;
-      }
-
-      const reservation = await res.json();
-      router.push(`/checkout/${reservation.id}`);
-    } catch (err) {
-      setError("An unexpected error occurred.");
-      setLoading(false);
-    }
-  };
-
+export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0d1117] text-[#c9d1d9] p-8 font-mono text-sm">
-      <div className="max-w-3xl mx-auto space-y-6">
-        <h1 className="text-2xl font-semibold text-white tracking-tight">
-          Available Inventory
+    <main style={styles.container}>
+      <div style={styles.hero}>
+        <div style={styles.badge}>Next.js Boilerplate CLI 🚀</div>
+        <h1 style={styles.title}>
+          Your Premium SaaS Stack <span style={styles.gradient}>Is Ready</span>
         </h1>
-
-        {error && (
-          <div className="border border-red-900 bg-red-950/30 text-red-400 p-3 rounded-md">
-            {error}
-          </div>
-        )}
-
-        <div className="space-y-4">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="border border-[#30363d] bg-[#161b22] p-5 rounded-md flex justify-between items-center"
-            >
-              <div>
-                <h2 className="text-base font-medium text-white">
-                  {product.name}
-                </h2>
-                <p className="text-[#8b949e] mt-1">{product.description}</p>
-
-                {product.stocks.map((stock: any) => {
-                  const available = stock.totalUnits - stock.reservedUnits;
-                  return (
-                    <div
-                      key={stock.id}
-                      className="mt-3 flex items-center space-x-4 text-xs"
-                    >
-                      <span className="bg-[#21262d] px-2 py-1 rounded text-[#8b949e]">
-                        {stock.warehouse.name}
-                      </span>
-                      <span
-                        className={
-                          available > 0 ? "text-green-400" : "text-red-400"
-                        }
-                      >
-                        {available} units available
-                      </span>
-                      <button
-                        onClick={() => handleReserve(stock.id)}
-                        disabled={available === 0 || loading}
-                        className="bg-[#238636] hover:bg-[#2ea043] disabled:bg-[#238636]/50 disabled:cursor-not-allowed text-white px-4 py-1.5 rounded-md transition-colors font-medium"
-                      >
-                        Reserve
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+        <p style={styles.subtitle}>
+          Congratulations! Your customized Next.js boilerplate has been successfully scaffolded with all your selected databases, components, and authentication configurations.
+        </p>
+        
+        <div style={styles.ctaGroup}>
+          <a href="https://nextjs.org/docs" target="_blank" rel="noopener noreferrer" style={styles.primaryCta}>
+            Read Next.js Docs
+          </a>
+          <a href="#features" style={styles.secondaryCta}>
+            Explore Stack Files
+          </a>
         </div>
       </div>
-    </div>
+
+      <section id="features" style={styles.grid}>
+        <div style={styles.card}>
+          <div style={styles.icon}>⚡</div>
+          <h3 style={styles.cardTitle}>App Router Ready</h3>
+          <p style={styles.cardText}>Built using modern Next.js 15 App Router with full Server Components and safe SEO presets.</p>
+        </div>
+        
+        <div style={styles.card}>
+          <div style={styles.icon}>🔒</div>
+          <h3 style={styles.cardTitle}>Modular Auth</h3>
+          <p style={styles.cardText}>Pre-configured middleware rules and pages for secure, lightning-fast session validation.</p>
+        </div>
+
+        <div style={styles.card}>
+          <div style={styles.icon}>🗄️</div>
+          <h3 style={styles.cardTitle}>Database Integration</h3>
+          <p style={styles.cardText}>Configured connections, client instances, schemas, and live migration configurations.</p>
+        </div>
+      </section>
+
+      <footer style={styles.footer}>
+        Created with <span style={{ color: '#ec4899' }}>♥</span> by{' '}
+        <a
+          href="https://www.youtube.com/@tubeguruji"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: '#71717a', textDecoration: 'underline', transition: 'color 0.2s' }}
+        >
+          Tubeguruji
+        </a>
+      </footer>
+    </main>
   );
 }
+
+const styles: Record<string, React.CSSProperties> = {
+  container: {
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#09090b',
+    color: '#fafafa',
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
+    padding: '2rem',
+    boxSizing: 'border-box',
+  },
+  hero: {
+    textAlign: 'center',
+    maxWidth: '800px',
+    marginBottom: '4rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  badge: {
+    display: 'inline-block',
+    padding: '0.5rem 1rem',
+    borderRadius: '9999px',
+    backgroundColor: '#27272a',
+    fontSize: '0.875rem',
+    fontWeight: 500,
+    color: '#38bdf8',
+    marginBottom: '1.5rem',
+    border: '1px solid #3f3f46',
+  },
+  title: {
+    fontSize: '3rem',
+    fontWeight: 800,
+    letterSpacing: '-0.025em',
+    lineHeight: 1.2,
+    margin: '0 0 1rem 0',
+  },
+  gradient: {
+    background: 'linear-gradient(to right, #38bdf8, #818cf8, #c084fc)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+  },
+  subtitle: {
+    fontSize: '1.125rem',
+    color: '#a1a1aa',
+    lineHeight: 1.6,
+    margin: '0 0 2rem 0',
+    maxWidth: '600px',
+  },
+  ctaGroup: {
+    display: 'flex',
+    gap: '1rem',
+  },
+  primaryCta: {
+    padding: '0.75rem 1.5rem',
+    borderRadius: '8px',
+    backgroundColor: '#38bdf8',
+    color: '#09090b',
+    fontWeight: 600,
+    textDecoration: 'none',
+    transition: 'opacity 0.2s',
+  },
+  secondaryCta: {
+    padding: '0.75rem 1.5rem',
+    borderRadius: '8px',
+    backgroundColor: 'transparent',
+    color: '#fafafa',
+    fontWeight: 600,
+    textDecoration: 'none',
+    border: '1px solid #3f3f46',
+    transition: 'background-color 0.2s',
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gap: '2rem',
+    width: '100%',
+    maxWidth: '1000px',
+    marginBottom: '4rem',
+  },
+  card: {
+    backgroundColor: '#18181b',
+    border: '1px solid #27272a',
+    borderRadius: '12px',
+    padding: '1.5rem',
+    transition: 'transform 0.2s, border-color 0.2s',
+  },
+  icon: {
+    fontSize: '2rem',
+    marginBottom: '1rem',
+  },
+  cardTitle: {
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    margin: '0 0 0.5rem 0',
+  },
+  cardText: {
+    fontSize: '0.875rem',
+    color: '#a1a1aa',
+    lineHeight: 1.5,
+    margin: 0,
+  },
+  footer: {
+    fontSize: '0.875rem',
+    color: '#71717a',
+    marginTop: 'auto',
+  },
+};
