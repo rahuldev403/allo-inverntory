@@ -1,8 +1,8 @@
-import React from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { sampleBooks } from "@/lib/actions/constants";
 import BookCard from "./BookCard";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -17,12 +17,14 @@ const Hero = () => {
             Convert your books into interactive AI conversations. Listen, learn,
             and discuss your favorite reads.
           </p>
-          <Button
-            variant="outline"
-            className="bg-white text-primary rounded-xl px-6 h-12 text-base font-semibold hover:bg-white/90 border-none shadow-sm mt-2"
-          >
-            <span className="text-xl mr-2 font-normal">+</span> Add new book
-          </Button>
+          <Link href="/books/new">
+            <Button
+              variant="outline"
+              className="bg-white text-primary rounded-xl px-6 h-12 text-base font-semibold hover:bg-white/90 border-none shadow-sm mt-2 cursor-pointer"
+            >
+              <span className="text-xl mr-2 font-normal ">+</span> Add new book
+            </Button>
+          </Link>
         </div>
 
         {/* Center Side */}
