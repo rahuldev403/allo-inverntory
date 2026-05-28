@@ -9,7 +9,7 @@ import VapiControls from "@/components/VapiControls";
 export default async function BookDetailsPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { userId } = await auth();
 
@@ -17,7 +17,7 @@ export default async function BookDetailsPage({
     redirect("/sign-in");
   }
 
-  const { slug } = params;
+  const { slug } = await params;
   const result = await getBookBySlug(slug);
 
   if (!result.success || !result.data) {
