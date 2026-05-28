@@ -1,13 +1,22 @@
+import { auth } from "@clerk/nextjs/server";
+
 import BookCard from "@/components/BookCard";
 import { getAllBooks } from "@/lib/actions/book.actions";
 import Search from "@/components/Search";
 import Hero from "@/components/Hero";
+import Landing from "@/components/Landing";
 
 const Page = async ({
   searchParams,
 }: {
   searchParams: Promise<{ query?: string }>;
 }) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return <Landing />;
+  }
+
   const { query } = await searchParams;
 
   const bookResults = await getAllBooks(query);

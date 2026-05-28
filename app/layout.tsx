@@ -18,7 +18,7 @@ const monaSans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Bookified",
+  title: "listner's-key",
   description: "Transform your books into interactive ai",
 };
 

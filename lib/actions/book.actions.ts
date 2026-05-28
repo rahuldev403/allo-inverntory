@@ -100,9 +100,14 @@ export const createBook = async (data: CreateBook) => {
       const { revalidatePath } = await import("next/cache");
       revalidatePath("/");
 
+      const upgradeMessage =
+        limits.maxBooks === 0
+          ? "Adding books requires a paid plan. Please purchase a plan to continue."
+          : `You have reached the maximum number of books allowed for your ${plan} plan (${limits.maxBooks}). Please upgrade to add more books.`;
+
       return {
         success: false,
-        error: `You have reached the maximum number of books allowed for your ${plan} plan (${limits.maxBooks}). Please upgrade to add more books.`,
+        error: upgradeMessage,
         isBillingError: true,
       };
     }
