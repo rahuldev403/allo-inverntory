@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Upload, ImageIcon } from "lucide-react";
@@ -19,12 +19,11 @@ import { Button } from "@/components/ui/button";
 import {
   ACCEPTED_PDF_TYPES,
   ACCEPTED_IMAGE_TYPES,
-  DEFAULT_VOICE,
 } from "@/lib/constants";
 import FileUploader from "./FileUploader";
 import VoiceSelector from "./VoiceSelector";
 import LoadingOverlay from "./LoadingOverlay";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import {
   checkBookExists,
