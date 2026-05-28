@@ -24,27 +24,29 @@ export default function Landing() {
             </SignUpButton>
           </div>
 
-          {/* Banner Illustrations Placeholders */}
+          {/* Banner Illustrations */}
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none flex justify-between items-center z-0">
-            {/* Left Illustration Placeholder */}
+            {/* Left Illustration */}
             <div className="w-[400px] h-[300px] flex items-center justify-center opacity-30 -translate-x-12 translate-y-10">
-              <div className="w-full h-full border-4 border-dashed border-[#cdae90] rounded-[50px] flex items-center justify-center">
-                <span className="text-xl font-bold text-[#b49271]">
-                  Illustration
-                  <br />
-                  Placeholder
-                </span>
-              </div>
+              <Image
+                src="/assets/left1.png"
+                alt="Bookshelf illustration"
+                width={400}
+                height={300}
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
-            {/* Right Illustration Placeholder */}
+            {/* Right Illustration */}
             <div className="w-[300px] h-[350px] hidden md:flex items-center justify-center opacity-30 mr-[400px] -translate-y-4">
-              <div className="w-full h-full border-4 border-dashed border-[#cdae90] rounded-[100px] flex items-center justify-center">
-                <span className="text-xl font-bold text-[#b49271]">
-                  Illustration
-                  <br />
-                  Placeholder
-                </span>
-              </div>
+              <Image
+                src="/assets/right.png"
+                alt="Library corner illustration"
+                width={300}
+                height={350}
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
           </div>
 
@@ -132,12 +134,14 @@ export default function Landing() {
                 Start with a book...
               </span>
               <div className="flex gap-[12px]">
-                <div className="w-[100px] h-[155px] bg-[#d7e1e6] flex items-center justify-center shadow-md">
-                  <span className="text-[11px] text-[#556976] font-semibold text-center leading-tight">
-                    Book Cover
-                    <br />
-                    Placeholder
-                  </span>
+                <div className="w-[100px] h-[155px] flex items-center justify-center shadow-md">
+                  <Image
+                    src="/assets/cover.png"
+                    alt="Book cover"
+                    width={100}
+                    height={155}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
