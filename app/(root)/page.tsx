@@ -1,7 +1,7 @@
 import BookCard from "@/components/BookCard";
 import { getAllBooks } from "@/lib/actions/book.actions";
 import Search from "@/components/Search";
-import Hero from "@/components/Hero.tsx";
+import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 
 const Page = async ({
