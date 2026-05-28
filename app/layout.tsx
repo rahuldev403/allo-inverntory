@@ -1,4 +1,4 @@
-import {ClerkProvider} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, IBM_Plex_Serif, Mona_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
