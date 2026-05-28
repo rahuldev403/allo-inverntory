@@ -143,7 +143,7 @@ export async function parsePDFFile(file: File) {
     }
 
     // Split text into segments for search
-    const segments = splitIntoSegments(fullText); 
+    const segments = splitIntoSegments(fullText);
 
     // Clean up PDF document resources
     await pdfDocument.destroy();
