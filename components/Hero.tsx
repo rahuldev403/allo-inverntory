@@ -86,17 +86,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="library-books-grid">
-        {sampleBooks.map((book) => (
-          <BookCard
-            key={book._id}
-            title={book.title}
-            author={book.author}
-            coverURL={book.coverURL}
-            slug={book.slug}
-          />
-        ))}
-      </div>
     </section>
   );
 };
